@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: PR Agent action step
-        uses: qodo-ai/pr-agent@v1 # Use the official PR-Agent action
+        uses: qodo-ai/pr-agent@main # Use the official PR-Agent action
         env:
           # 1. Set the model to a Gemini model (this configures PR-Agent to use Google's provider)
           CONFIG__MODEL: "gemini/gemini-2.5-flash"
