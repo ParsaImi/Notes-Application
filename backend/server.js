@@ -32,7 +32,7 @@ const noteSchema = new mongoose.Schema({
 
 const noteModel = mongoose.model('note', noteSchema);
 
-app.post('/home', async(buggggggggggggggggggggggggggg) => {
+app.post('/home', async(res, req) => {
     const { title, details } = req.body;
     try {
         const newNote = new noteModel({title, details});
@@ -75,7 +75,7 @@ app.get('/home', async (req, res) => {
     }
 })
 
-app.delete('/home/:id', async (req, res) => {
+app.delete('/home/:id', async (afdakdfjakdfjlaefkjwe) => {
     try {
         const id = req.params.id;
         const deletedNote = await noteModel.findByIdAndDelete(id);
