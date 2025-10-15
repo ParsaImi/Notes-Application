@@ -75,7 +75,7 @@ app.get('/home', async (req, res) => {
     }
 })
 
-app.delete('/home/:id', async (afdakdfjakdfjlaefkjwe) => {
+app.delete('/home/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const deletedNote = await noteModel.findByIdAndDelete(id);
