@@ -1,24 +1,29 @@
-name: PR Agent (Gemini)
+name: PR Agent (Gemini) 🤖
 on:
   pull_request:
-    types: [opened, reopened, ready_for_review]
+    types: [opened, reopened, ready_for_review, synchronize]
   issue_comment:
+
 jobs:
   pr_agent_job:
     if: ${{ github.event.sender.type != 'Bot' }}
     runs-on: ubuntu-latest
     permissions:
+      # Required permissions for PR-Agent to comment and update the PR
       issues: write
       pull-requests: write
       contents: write
+
     steps:
       - name: PR Agent action step
-        uses: qodo-ai/pr-agent@main
+        uses: qodo-ai/pr-agent@v1 # Use the official PR-Agent action
         env:
+          # 1. Set the model to a Gemini model (this configures PR-Agent to use Google's provider)
+          CONFIG__MODEL: "gemini/gemini-2.5-flash"
+
+          # 2. Provide the Gemini API Key using the required environment variable
+          # GOOGLE_AI_STUDIO__GEMINI_API_KEY corresponds to [google_ai_studio] and gemini_api_key in the config
+          GOOGLE_AI_STUDIO__GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+          # 3. GitHub Token (required for PR-Agent to interact with GitHub)
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          config.model: "gemini-1.5-flash-latest"
-          config.fallback_models: '["gemini-1.5-flash"]'
-          GOOGLE_AI_STUDIO.GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          github_action_config.auto_review: "true"
-          github_action_config.auto_describe: "true"
-          github_action_config.auto_improve: "true"
