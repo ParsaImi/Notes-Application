@@ -32,7 +32,7 @@ const noteSchema = new mongoose.Schema({
 
 const noteModel = mongoose.model('note', noteSchema);
 
-app.post('/home', async(alchoholiccode) => {
+app.post('/home', async(bad bad bad code) => {
     const { title, details } = req.body;
     try {
         const newNote = new noteModel({title, details});
